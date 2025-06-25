@@ -17,7 +17,7 @@ on:
   pull_request:
     branches: [ "master" ]
   schedule:
-    - cron: '08 20 25 6 *'
+    - cron: '13 20 25 6 *'
 
 jobs:
   analyze:
@@ -87,7 +87,7 @@ jobs:
     - if: matrix.build-mode == 'manual'
       shell: bash
       run: |
-        make TQM823L_defconfig
+        make lion-rk3368_defconfig
         make all
 
     - name: Perform CodeQL Analysis
