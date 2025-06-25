@@ -17,7 +17,7 @@ on:
   pull_request:
     branches: [ "master" ]
   schedule:
-    - cron: '23 20 25 6 *'
+    - cron: '30 20 25 6 *'
 
 jobs:
   analyze:
@@ -88,10 +88,11 @@ jobs:
       shell: bash
       run: |
         sudo apt-get update
-        sudo apt-get install -y gcc-aarch64-linux-gnu
-        sudo apt install -y python2
+        sudo apt-get install -y gcc-aarch64-linux-gnu python2-minimal
+        if ! command -v python2 >/dev/null 2>&1; then
+          sudo ln -s /usr/bin/python2.7 /usr/bin/python2
+        fi
         export CROSS_COMPILE=aarch64-linux-gnu-
-
         make lion-rk3368_defconfig
         make all
 
