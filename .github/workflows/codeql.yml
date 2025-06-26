@@ -6,12 +6,12 @@ on:
   pull_request:
     branches: [ "master" ]
   schedule:
-    - cron: '36 20 25 6 *'
+    - cron: '48 10 26 6 *'
 
 jobs:
   analyze:
     name: Analyze (${{ matrix.language }})
-    runs-on: ${{ (matrix.language == 'swift' && 'macos-latest') || 'ubuntu-latest' }}
+    runs-on: ubuntu-18.04  # Usa Ubuntu 18.04 invece di latest
     permissions:
       security-events: write
       packages: read
@@ -41,15 +41,9 @@ jobs:
       shell: bash
       run: |
         sudo apt-get update
-        # Installa le dipendenze necessarie
-        sudo apt-get install -y gcc-aarch64-linux-gnu software-properties-common
+        sudo apt-get install -y gcc-aarch64-linux-gnu python2.7 python2-minimal
         
-        # Installa Python 2.7 da deadsnakes PPA
-        sudo add-apt-repository -y ppa:deadsnakes/ppa
-        sudo apt-get update
-        sudo apt-get install -y python2.7
-        
-        # Crea il link simbolico per python2
+        # Crea il link simbolico se necessario
         if ! command -v python2 >/dev/null 2>&1; then
           sudo ln -s /usr/bin/python2.7 /usr/bin/python2
         fi
