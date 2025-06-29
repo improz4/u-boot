@@ -21,14 +21,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Set up Python 2.7
-        uses: deadsnakes/action@v2  # Action speciale per Python legacy
-        with:
-          python-version: '2.7'
+       - name: Install Python 2.7
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y python2.7 python2.7-dev
+          curl https://bootstrap.pypa.io/pip/2.7/get-pip.py --output get-pip.py
+          python2.7 get-pip.py
 
       - name: Install build dependencies
         run: |
-          sudo apt-get update
           sudo apt-get install -y build-essential gcc g++ bison flex libssl-dev python-dev
 
       - name: Build U-Boot (edison configuration)
