@@ -34,8 +34,8 @@ jobs:
 
       - name: Generate DTC files
         run: |
-          make edison_defconfig
-          make all -j$(nproc)
+          make KBUILD_HOSTCFLAGS="-fcommon" edison_defconfig
+          make KBUILD_HOSTCFLAGS="-fcommon" all -j$(nproc)
 
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v2
