@@ -37,7 +37,7 @@ jobs:
         with:
           languages: 'cpp'
           queries: |
-            improz4/u-boot/10_taint_tracking.ql@master
+           ./ql
           disable-default-queries: true 
           source-root: ${{ github.workspace }}
 
