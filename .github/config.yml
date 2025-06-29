@@ -1,0 +1,7 @@
+name: "My CodeQL config"
+
+disable-default-queries: true
+
+queries:
+  - name: Query Custom Nostre
+    uses: ./ql
