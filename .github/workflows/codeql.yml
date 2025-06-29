@@ -34,6 +34,8 @@ jobs:
 
       - name: Build U-Boot (edison configuration)
         run: |
+          sed -i 's/^YYLTYPE yylloc;/extern YYLTYPE yylloc;/' scripts/dtc/dtc-lexer.lex.c
+          sed -i 's/^YYLTYPE yylloc;/extern YYLTYPE yylloc;/' scripts/dtc/dtc-parser.tab.c
           make edison_defconfig
           make all -j$(nproc)
 
