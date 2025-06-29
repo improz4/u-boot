@@ -32,19 +32,19 @@ jobs:
         run: |
           sudo apt-get install -y build-essential gcc g++ bison flex libssl-dev
 
-      - name: Build
-        run: |
-          export PATH=$PATH:$GITHUB_WORKSPACE/codeql-runner
-          make clean
-          make KBUILD_HOSTCFLAGS="-fcommon" edison_defconfig
-          make KBUILD_HOSTCFLAGS="-fcommon" all -j$(nproc)
-
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v3
         with:
           languages: 'cpp,python'
           queries: +security-and-quality
           source-root: ${{ github.workspace }}
+
+      - name: Build
+        run: |
+          export PATH=$PATH:$GITHUB_WORKSPACE/codeql-runner
+          make clean
+          make KBUILD_HOSTCFLAGS="-fcommon" edison_defconfig
+          make KBUILD_HOSTCFLAGS="-fcommon" all -j$(nproc)
           
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3
