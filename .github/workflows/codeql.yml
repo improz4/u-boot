@@ -32,11 +32,18 @@ jobs:
         run: |
           sudo apt-get install -y build-essential gcc g++ bison flex libssl-dev
 
-      - name: Build U-Boot (edison configuration)
+      - name: Generate DTC files
+        run: |
+          make edison_defconfig
+          make all -j$(nproc) scripts/dtc/dtc-lexer.lex.c scripts/dtc/dtc-parser.tab.c || true
+
+      - name: Apply DTC patches
         run: |
           sed -i 's/^YYLTYPE yylloc;/extern YYLTYPE yylloc;/' scripts/dtc/dtc-lexer.lex.c
           sed -i 's/^YYLTYPE yylloc;/extern YYLTYPE yylloc;/' scripts/dtc/dtc-parser.tab.c
-          make edison_defconfig
+
+      - name: Build U-Boot
+        run: |
           make all -j$(nproc)
 
       - name: Initialize CodeQL
