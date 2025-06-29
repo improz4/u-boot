@@ -1,7 +1,5 @@
-name: custom/ql
+name: my-org/my-queries
 version: 0.0.1
 library: false
 dependencies:
   codeql/cpp-queries: "*"
-  codeql/cpp-all: "*"
-  codeql/cpp-all-experimental: "*"
