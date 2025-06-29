@@ -1,6 +1,14 @@
 /**
+ * @name TAINT 
+ * @description Esempio
  * @kind path-problem
+ * @id cpp/custom/example-tain
+ * @problem.severity warning
+ * @tags correctness
+ * @precision high
+ * @query.packs my-org/my-queries
  */
+
 
 import cpp
 import semmle.code.cpp.dataflow.TaintTracking
