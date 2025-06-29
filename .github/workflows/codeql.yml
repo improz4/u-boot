@@ -35,15 +35,6 @@ jobs:
       - name: Generate DTC files
         run: |
           make edison_defconfig
-          make all -j$(nproc) scripts/dtc/dtc-lexer.lex.c scripts/dtc/dtc-parser.tab.c || true
-
-      - name: Apply DTC patches
-        run: |
-          sed -i 's/^YYLTYPE yylloc;/extern YYLTYPE yylloc;/' scripts/dtc/dtc-lexer.lex.c
-          sed -i 's/^YYLTYPE yylloc;/extern YYLTYPE yylloc;/' scripts/dtc/dtc-parser.tab.c
-
-      - name: Build U-Boot
-        run: |
           make all -j$(nproc)
 
       - name: Initialize CodeQL
