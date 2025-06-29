@@ -35,10 +35,7 @@ jobs:
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v3
         with:
-          languages: 'cpp'
-          queries: |
-           ./ql
-          disable-default-queries: true 
+          config.file: ./.github/workflows/config.yml
           source-root: ${{ github.workspace }}
 
       - name: Build
