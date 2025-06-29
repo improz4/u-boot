@@ -35,7 +35,7 @@ jobs:
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v3
         with:
-          config.file: ./.github/workflows/config.yml
+          config.file: ./.github/config.yml
           source-root: ${{ github.workspace }}
 
       - name: Build
