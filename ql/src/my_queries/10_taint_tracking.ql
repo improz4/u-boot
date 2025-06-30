@@ -1,9 +1,9 @@
 /**
- * @name TAINT 
+ * @name TAINT PATH PROBLEM
  * @description Esempio
  * @kind path-problem
- * @id cpp/custom/example-taint
- * @problem.severity warning
+ * @id cpp/custom/taint
+ * @problem.severity critical
  * @tags correctness
  * @precision high
  * @query.packs my-org/my-queries
